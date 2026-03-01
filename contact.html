@@ -115,30 +115,33 @@
                     <h4 class="text-center lh-base mb-4">Receive messages instantly with our PHP and Ajax contact form.
                     </h4>
                     <div class="wow fadeIn" data-wow-delay="0.3s">
-                        <form>
+                        <form id="contactForm">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                        <input type="text" class="form-control" id="name" placeholder="Your Name"
+                                            required>
                                         <label for="name">Your Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                        <input type="email" class="form-control" id="email" placeholder="Your Email"
+                                            required>
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                        <input type="text" class="form-control" id="subject" placeholder="Subject"
+                                            required>
                                         <label for="subject">Subject</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea class="form-control" placeholder="Leave a message here" id="message"
-                                            style="height: 150px"></textarea>
+                                            style="height: 150px" required></textarea>
                                         <label for="message">Message</label>
                                     </div>
                                 </div>
@@ -245,6 +248,55 @@
 
     <!-- Template Javascript -->
     <script src="./js/main.js"></script>
+
+    <!-- Firebase Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBgQhFaLdkDJdNMUZcBGwM4XIASON286yE",
+            authDomain: "shinebeautyparlor-3e3bb.firebaseapp.com",
+            projectId: "shinebeautyparlor-3e3bb",
+            storageBucket: "shinebeautyparlor-3e3bb.firebasestorage.app",
+            messagingSenderId: "881829169865",
+            appId: "1:881829169865:web:f144764a8e965ea2bf5b18",
+            measurementId: "G-C1ZH99MQV8"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+
+                    try {
+                        const docRef = await addDoc(collection(db, "contacts"), {
+                            name: name,
+                            email: email,
+                            subject: subject,
+                            message: message,
+                            createdAt: serverTimestamp()
+                        });
+                        alert("Message sent successfully!");
+                        contactForm.reset();
+                    } catch (error) {
+                        console.error("Error adding document: ", error);
+                        alert("Error sending message. Please try again.");
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
