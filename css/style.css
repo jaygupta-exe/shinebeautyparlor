@@ -1,6 +1,8 @@
-/********** Template CSS **********/
 
-/*** Spinner ***/
+body {
+    font-family: "Playfair Display", serif;
+}
+
 #spinner {
     opacity: 0;
     visibility: hidden;
@@ -469,6 +471,11 @@
 }
 
 body {
-    background-color: #fff5f8;
+    background-color: #d6d2df;
     /* soft beauty pink */
+}
+
+.bg-light {
+    background-color: #d4d2ce !important;
+    /* luxury cream */
 }
