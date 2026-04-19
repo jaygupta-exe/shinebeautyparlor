@@ -1,0 +1,148 @@
+"use client";
+
+import PageHeader from "@/components/PageHeader";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+
+// Note: Removed export metadata from client component.
+// Metadata should be in a separate layout or server component wrapper if needed.
+
+export default function ContactPage() {
+  return (
+    <>
+      <PageHeader title="Contact Us" breadcrumbs={[{ label: "Contact" }]} />
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="font-dancing text-brand-gold text-3xl mb-2">
+              Get In Touch
+            </p>
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-brand-dark">
+              Have Any Query? Contact Us
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Contact Info */}
+            <div className="lg:col-span-1 space-y-8">
+              <div className="bg-brand-cream p-8 rounded-3xl shadow-sm border border-brand-gold/10">
+                <h3 className="font-playfair text-2xl font-semibold mb-6">
+                  Contact Information
+                </h3>
+                <div className="space-y-6">
+                  <div className="flex gap-4">
+                    <div className="w-12 h-12 rounded-full bg-brand-gold/20 flex items-center justify-center flex-shrink-0">
+                      <FaMapMarkerAlt className="text-brand-gold" size={20} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-brand-dark">Our Location</p>
+                      <p className="text-gray-500 text-sm mt-1">
+                        123 Shine Street, NY 10001
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-12 h-12 rounded-full bg-brand-gold/20 flex items-center justify-center flex-shrink-0">
+                      <FaPhoneAlt className="text-brand-gold" size={20} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-brand-dark">Call Us</p>
+                      <p className="text-gray-500 text-sm mt-1">
+                        +1 234 567 8900
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-12 h-12 rounded-full bg-brand-gold/20 flex items-center justify-center flex-shrink-0">
+                      <FaEnvelope className="text-brand-gold" size={20} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-brand-dark">Email Us</p>
+                      <p className="text-gray-500 text-sm mt-1">
+                        contact@shinebeauty.com
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form Details */}
+            <div className="lg:col-span-2">
+              <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-brand-gold/5 border border-gray-100">
+                <h4 className="text-center text-gray-500 mb-8 max-w-lg mx-auto">
+                  Fill out the form below and our team will get back to you as soon as possible.
+                </h4>
+                
+                <form className="space-y-6" onSubmit={(e) => {
+                       e.preventDefault();
+                       alert("Form submitted! (UI-only mode)");
+                    }}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        Your Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 outline-none transition-all"
+                        placeholder="John Doe"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Your Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 outline-none transition-all"
+                        placeholder="john@example.com"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 outline-none transition-all"
+                      placeholder="How can we help?"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={5}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 outline-none transition-all resize-none"
+                      placeholder="Leave your message here..."
+                      required
+                    />
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    className="w-full bg-brand-gold hover:bg-brand-dark text-white font-medium py-4 rounded-xl transition-colors duration-300 shadow-md shadow-brand-gold/20"
+                  >
+                    SEND MESSAGE
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
