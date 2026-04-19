@@ -8,7 +8,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 
 export default defineConfig({
   name: "shine-beauty-parlour",
-  title: "Shine Beauty Parlour Dashboard",
+  title: "📬 Shine Beauty Parlour Dashboard",
   projectId,
   dataset,
   basePath: "/studio",
