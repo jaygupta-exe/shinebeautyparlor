@@ -18,6 +18,7 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error'
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,6 +51,7 @@ export default function ContactPage() {
     } catch (error) {
       console.error("Submission error:", error);
       setStatus("error");
+      setErrorMsg(error.message || "Failed to send message.");
     } finally {
       setIsSubmitting(false);
     }
@@ -135,7 +137,7 @@ export default function ContactPage() {
                   )}
                   {status === "error" && (
                     <div className="p-4 bg-red-50 text-red-700 rounded-xl text-center font-medium border border-red-200">
-                      ❌ Oops! Something went wrong. Please try again.
+                      ❌ Oops! {errorMsg || "Something went wrong. Please try again."}
                     </div>
                   )}
 
