@@ -21,8 +21,15 @@ export const metadata = {
     "pedicure",
   ],
   icons: {
-    icon: "/images/logo.png",
+    icon: "/favicon.ico",
+    apple: "/images/logo.png",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }) {

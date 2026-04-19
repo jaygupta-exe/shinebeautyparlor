@@ -11,7 +11,7 @@ export default function ContactPage() {
     <>
       <PageHeader title="Contact Us" breadcrumbs={[{ label: "Contact" }]} />
 
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-dancing text-brand-gold text-3xl mb-2">
@@ -22,7 +22,7 @@ export default function ContactPage() {
             </h2>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Contact Info */}
             <div className="lg:col-span-1 space-y-8">
               <div className="bg-brand-cream p-8 rounded-3xl shadow-sm border border-brand-gold/10">

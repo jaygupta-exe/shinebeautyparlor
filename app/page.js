@@ -24,10 +24,10 @@ export default async function HomePage() {
       <Hero />
 
       {/* About Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Image */}
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Image & Experience Cards */}
             <div className="relative">
               <div className="rounded-3xl overflow-hidden shadow-2xl shadow-brand-gold/10">
                 <Image
@@ -38,14 +38,26 @@ export default async function HomePage() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              {/* Floating Call Card */}
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-5 flex items-center gap-4 border border-brand-gold/10">
+
+              {/* Experience Card - Floating on Desktop */}
+              <div className="hidden md:flex absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-5 items-center gap-4 border border-brand-gold/10 animate-float">
                 <div className="w-14 h-14 rounded-xl bg-brand-gold flex items-center justify-center shadow-md">
                   <FaCalendarAlt className="text-white text-xl" />
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-brand-dark">25+</p>
                   <p className="text-sm text-gray-500">Years Experience</p>
+                </div>
+              </div>
+
+              {/* Experience Card - Stacked on Mobile */}
+              <div className="md:hidden mt-6 bg-brand-cream rounded-2xl p-5 flex items-center gap-4 border border-brand-gold/10">
+                <div className="w-12 h-12 rounded-xl bg-brand-gold flex items-center justify-center shadow-md flex-shrink-0">
+                  <FaCalendarAlt className="text-white text-lg" />
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-brand-dark">25+ Years Experience</p>
+                  <p className="text-xs text-gray-500 italic">Established excellence since 1999</p>
                 </div>
               </div>
             </div>
@@ -55,7 +67,7 @@ export default async function HomePage() {
               <p className="font-dancing text-brand-gold text-3xl mb-2">
                 About Us
               </p>
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold text-brand-dark mb-6">
+              <h2 className="font-playfair text-3xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight">
                 Why People Choose Us!
               </h2>
               <p className="text-gray-600 leading-relaxed mb-8">
@@ -95,7 +107,7 @@ export default async function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-brand-cream">
+      <section className="py-12 md:py-20 bg-brand-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="font-dancing text-brand-gold text-3xl mb-2">
@@ -131,7 +143,7 @@ export default async function HomePage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="font-dancing text-brand-gold text-3xl mb-2">
@@ -143,7 +155,7 @@ export default async function HomePage() {
           </div>
 
           {team.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {team.map((member) => (
                 <TeamCard key={member._id} member={member} />
               ))}
@@ -157,7 +169,7 @@ export default async function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-brand-cream">
+      <section className="py-12 md:py-20 bg-brand-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="font-dancing text-brand-gold text-3xl mb-2">

@@ -32,7 +32,7 @@ export default function Hero() {
             <p className="font-dancing text-brand-gold text-3xl md:text-4xl mb-3">
               Welcome
             </p>
-            <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark leading-tight mb-8">
+            <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark leading-tight mb-8">
               Beauty Salon{" "}
               <span className="text-shine">Fashion</span>{" "}
               for Women

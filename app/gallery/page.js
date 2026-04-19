@@ -15,7 +15,7 @@ export default async function GalleryPage() {
     <>
       <PageHeader title="Our Gallery" breadcrumbs={[{ label: "Gallery" }]} />
 
-      <section className="py-20 bg-white min-h-[60vh]">
+      <section className="py-12 md:py-20 bg-white min-h-[60vh]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="font-dancing text-brand-gold text-3xl mb-2">
