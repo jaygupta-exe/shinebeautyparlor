@@ -1,12 +1,61 @@
 "use client";
 
+import { useState } from "react";
+import { supabase } from "@/lib/supabase";
+import {
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-
-// Note: Removed export metadata from client component.
-// Metadata should be in a separate layout or server component wrapper if needed.
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState(null); // 'success' | 'error'
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus(null);
+
+    try {
+      const { error } = await supabase
+        .from("messages")
+        .insert([
+          {
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            message: formData.message,
+          },
+        ]);
+
+      if (error) throw error;
+
+      setStatus("success");
+      setFormData({ name: "", phone: "", email: "", message: "" });
+
+      // Auto-dismiss success message after 5 seconds
+      setTimeout(() => setStatus(null), 5000);
+    } catch (error) {
+      console.error("Submission error:", error);
+      setStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
   return (
     <>
       <PageHeader title="Contact Us" breadcrumbs={[{ label: "Contact" }]} />
@@ -74,10 +123,18 @@ export default function ContactPage() {
                   Fill out the form below and our team will get back to you as soon as possible.
                 </h4>
                 
-                <form className="space-y-6" onSubmit={(e) => {
-                       e.preventDefault();
-                       alert("Form submitted! (UI-only mode)");
-                    }}>
+                <form className="space-y-6" onSubmit={handleSubmit}>
+                  {status === "success" && (
+                    <div className="p-4 bg-green-50 text-green-700 rounded-xl text-center font-medium border border-green-200">
+                      ✨ Thank you! Your message has been sent successfully.
+                    </div>
+                  )}
+                  {status === "error" && (
+                    <div className="p-4 bg-red-50 text-red-700 rounded-xl text-center font-medium border border-red-200">
+                      ❌ Oops! Something went wrong. Please try again.
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -86,34 +143,40 @@ export default function ContactPage() {
                       <input
                         type="text"
                         id="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 outline-none transition-all"
                         placeholder="John Doe"
                         required
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Your Email
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number
                       </label>
                       <input
-                        type="email"
-                        id="email"
+                        type="tel"
+                        id="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 outline-none transition-all"
-                        placeholder="john@example.com"
+                        placeholder="+91 98765 43210"
                         required
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Subject
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Your Email
                     </label>
                     <input
-                      type="text"
-                      id="subject"
+                      type="email"
+                      id="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 outline-none transition-all"
-                      placeholder="How can we help?"
+                      placeholder="john@example.com"
                       required
                     />
                   </div>
@@ -125,6 +188,8 @@ export default function ContactPage() {
                     <textarea
                       id="message"
                       rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 outline-none transition-all resize-none"
                       placeholder="Leave your message here..."
                       required
@@ -133,9 +198,10 @@ export default function ContactPage() {
                   
                   <button
                     type="submit"
-                    className="w-full bg-brand-gold hover:bg-brand-dark text-white font-medium py-4 rounded-xl transition-colors duration-300 shadow-md shadow-brand-gold/20"
+                    disabled={isSubmitting}
+                    className="w-full bg-brand-gold hover:bg-brand-dark text-white font-medium py-4 rounded-xl transition-colors duration-300 shadow-md shadow-brand-gold/20 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    SEND MESSAGE
+                    {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
                   </button>
                 </form>
               </div>
