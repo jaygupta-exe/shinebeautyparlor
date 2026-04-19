@@ -25,6 +25,10 @@ export default function ContactPage() {
     setStatus(null);
 
     try {
+      if (!supabase) {
+        throw new Error("Supabase is not configured in Vercel settings.");
+      }
+
       const { error } = await supabase
         .from("messages")
         .insert([

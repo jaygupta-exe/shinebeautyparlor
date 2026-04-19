@@ -10,6 +10,11 @@ export default function StudioMessages() {
   const [error, setError] = useState(null);
 
   const fetchMessages = useCallback(async () => {
+    if (!supabase) {
+      setError("Supabase URL or Anon Key is missing. Check Vercel Environment Variables.");
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     setError(null);
     const { data, error: fetchError } = await supabase
