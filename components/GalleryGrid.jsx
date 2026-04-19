@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaTimes } from "react-icons/fa";
+import { urlFor } from "@/lib/sanity";
 
-export default function GalleryGrid({ images, urlFor }) {
+export default function GalleryGrid({ images }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
 

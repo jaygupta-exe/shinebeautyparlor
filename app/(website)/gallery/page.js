@@ -29,7 +29,7 @@ export default async function GalleryPage() {
           </div>
 
           {images.length > 0 ? (
-            <GalleryGrid images={images} urlFor={urlFor} />
+            <GalleryGrid images={images} />
           ) : (
             <div className="text-center py-20">
               <div className="w-20 h-20 rounded-full bg-brand-cream mx-auto mb-6 flex items-center justify-center">
