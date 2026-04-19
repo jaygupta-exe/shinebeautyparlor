@@ -11,6 +11,8 @@ import {
 } from "@/lib/sanity";
 import { FaCalendarAlt, FaUsers, FaArrowRight } from "react-icons/fa";
 
+export const revalidate = 60;
+
 export default async function HomePage() {
   const [services, team, testimonials] = await Promise.all([
     getServices(),

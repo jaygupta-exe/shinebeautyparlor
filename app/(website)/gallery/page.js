@@ -8,6 +8,8 @@ export const metadata = {
     "View our portfolio of haircuts, makeup, nail designs, and more at Shine Beauty Parlour.",
 };
 
+export const revalidate = 60;
+
 export default async function GalleryPage() {
   const images = await getGalleryImages();
 
