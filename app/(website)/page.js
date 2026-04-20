@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/Hero";
+import AboutCarousel from "@/components/AboutCarousel";
 import ServiceCard from "@/components/ServiceCard";
 import TeamCard from "@/components/TeamCard";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
@@ -31,15 +32,7 @@ export default async function HomePage() {
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Image & Experience Cards */}
             <div className="relative">
-              <div className="rounded-3xl overflow-hidden shadow-2xl shadow-brand-gold/10">
-                <Image
-                  src="/images/about.jpg"
-                  alt="About Shine Beauty Parlour"
-                  width={600}
-                  height={500}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
+              <AboutCarousel />
 
               {/* Experience Card - Floating on Desktop */}
               <div className="hidden md:flex absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-5 items-center gap-4 border border-brand-gold/10 animate-float">

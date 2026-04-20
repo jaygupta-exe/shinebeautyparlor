@@ -5,9 +5,10 @@ import Image from "next/image";
 import { FaPhoneAlt, FaEnvelope, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const slides = [
-  "/images/hero-slider-1.jpg",
-  "/images/hero-slider-2.jpg",
-  "/images/hero-slider-3.jpg",
+  "/images/hero-slide-1.png",
+  "/images/hero-slide-2.png",
+  "/images/hero-slide-3.png",
+  "/images/hero-slide-4.png",
 ];
 
 export default function Hero() {
@@ -84,6 +85,8 @@ export default function Hero() {
                       : "opacity-0 scale-105"
                   }`}
                   priority={i === 0}
+                  quality={100}
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               ))}
