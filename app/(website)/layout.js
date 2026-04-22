@@ -20,6 +20,30 @@ export const metadata = {
     "manicure",
     "pedicure",
   ],
+  authors: [{ name: "Shine Beauty Parlour" }],
+  creator: "Shine Beauty Parlour Team",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://shinebeautyparlour.com",
+    title: "Shine Beauty Parlour - Luxury Beauty Salon",
+    description: "Premium beauty services including haircuts, makeup, skincare, and more.",
+    siteName: "Shine Beauty Parlour",
+    images: [
+      {
+        url: "/images/og-image.jpg", // Ensure this image exists in public/images
+        width: 1200,
+        height: 630,
+        alt: "Shine Beauty Parlour",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shine Beauty Parlour - Luxury Beauty Salon",
+    description: "Premium beauty services including haircuts, makeup, skincare, and more.",
+    images: ["/images/og-image.jpg"],
+  },
   icons: {
     icon: "/favicon.ico",
     apple: "/images/logo.png",
